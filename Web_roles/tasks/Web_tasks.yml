@@ -1,0 +1,52 @@
+---
+# tasks file for Web_roles
+- hosts: web
+  become: true
+
+  tasks:
+    - name: Update apt-get repo and cache
+      apt: 
+        update_cache: yes 
+        force_apt_get: yes 
+        cache_valid_time: 3600
+
+    - name: Install prerequistes
+      apt: name={{ item }} update_cache=yes state=latest force_apt_get=yes
+      loop: [ 'aptitude' ]
+
+    - name: Install Mysql server
+      apt:
+       name:
+       - mysql-server
+       - python3-pymysql
+       - mysql-client
+       - python3-mysqldb
+       - libmysqlclient-dev
+
+ 
+    - name: Ensure apache2 is present
+      apt: 
+        name: apache2
+        state: present
+
+    - name: Allow everything and enable UFW
+      ufw:
+        state: enabled
+        policy: allow
+
+    - name: Allow SSH
+      ufw:
+        rule: limit
+        port: ssh
+        proto: tcp
+
+    - name: Allow all access to apache
+      ufw:
+        rule: allow
+        name: 'Apache'
+           
+    - name: Allow port 80
+      ufw:
+        rule: limit
+        port: "80"
+        proto: tcp

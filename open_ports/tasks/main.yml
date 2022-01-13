@@ -1,0 +1,16 @@
+---
+# tasks file for open_ports
+## This run the tasks on a specific IP address 
+
+- include_tasks: open_ports_tasks.yml
+  when:  "'192.168.50.5' in inventory_hostname"
+
+- include_tasks: open_ports_tasks.yml
+  when:  "'192.168.50.6' in inventory_hostname"
+
+- include_tasks: open_ports_tasks.yml
+  when:  "'192.168.50.7' in inventory_hostname"
+
+- include_tasks: open_ports_tasks.yml
+  when:  "'192.168.50.8' in inventory_hostname"
+

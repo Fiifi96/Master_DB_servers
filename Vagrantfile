@@ -1,20 +1,19 @@
 Vagrant.configure("2") do |config|
  
   config.vm.box = "bento/ubuntu-20.04"
-  # config.vm.synced_folder ".", "/vagrant"
+  config.vm.synced_folder ".", "/vagrant"
   config.vm.provider "virtualbox" do |v|
     v.linked_clone = true
     v.memory = 1024
     v.cpus = 1
   end  
-
+  
   config.vm.define "web" do |web|
     web.vm.hostname = "web"
     web.vm.network "private_network", ip: "192.168.50.5";
-    # web.vm.provision "ansible" do |ansible|
-    #   ansible.playbook = "master_playbook.yml"
-    # end
-    
+    web.vm.provision "ansible" do |ansible|
+      ansible.playbook = "master_playbook.yml"
+    end
   end  
 
   config.vm.define "web2" do |web2|
@@ -32,9 +31,9 @@ Vagrant.configure("2") do |config|
     sdb.vm.network "private_network", ip: "192.168.50.8";
   end
   
-  config.vm.define "haproxy" do |haproxy|
-    haproxy.vm.hostname = "haproxy"
-    haproxy.vm.network "private_network", ip: "192.168.50.10";
+  config.vm.define "loadb" do |loadb|
+    loadb.vm.hostname = "loadb"
+    loadb.vm.network "private_network", ip: "192.168.50.10";
   end
 
 end

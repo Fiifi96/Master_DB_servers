@@ -1,0 +1,12 @@
+---
+# vars file for Slave_roles
+
+master_password: master
+masters_IP: 192.168.50.7
+mysql_config_file: /etc/mysql/mysql.conf.d/mysqld.cnf
+mysql_root_user: root
+mysql_root_password: password
+replica_db_name: repdb
+replica_db_user: slave_user
+replica_db_password: slave
+Slaves_IP: 192.168.50.8

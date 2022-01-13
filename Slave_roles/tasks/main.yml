@@ -1,0 +1,5 @@
+## This run the tasks on a specific IP address 
+
+- include_tasks: Slave_task.yml
+  when:  "'192.168.50.8' in inventory_hostname"
+

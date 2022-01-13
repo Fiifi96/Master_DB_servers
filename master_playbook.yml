@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+
+  roles:
+  - open_ports
+  - Master_roles
+  - Slave_roles
+  - Web_roles
+  - loadb_roles

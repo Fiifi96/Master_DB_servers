@@ -1,0 +1,6 @@
+---
+# handlers file for Master_Slave_roles
+- name: Restart mysql
+  service:
+    name: mysql
+    state: restarted

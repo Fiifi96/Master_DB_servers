@@ -1,0 +1,9 @@
+[client]
+user = "{{mysql_root_user}}"
+password = "{{mysql_root_password}}"
+host = localhost
+[remote]
+login_user = "{{ replica_db_user }}"
+login_password = "{{replica_db_password}}"
+host = "{{masters_IP}}"
+

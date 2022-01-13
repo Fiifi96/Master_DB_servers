@@ -1,0 +1,7 @@
+## This run the tasks on a specific IP address 
+
+- include_tasks: Web_tasks.yml
+  when:  "'192.168.50.5' in inventory_hostname"
+
+- include_tasks: Web_tasks.yml
+  when:  "'192.168.50.6' in inventory_hostname"

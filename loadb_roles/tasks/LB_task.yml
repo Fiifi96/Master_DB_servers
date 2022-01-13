@@ -1,0 +1,29 @@
+---
+# tasks file for loadb_roles
+# - become: true
+
+- name: Update apt-get repo and cache
+  apt: 
+    update_cache: yes 
+    force_apt_get: yes 
+    cache_valid_time: 3600
+
+- name: Install prerequistes
+  apt: name={{ item }} update_cache=yes state=latest force_apt_get=yes
+  loop: [ 'aptitude' ]
+
+- name: "install haproxy"
+  package:
+    name: haproxy
+    state: present
+
+- name: " configure haproxy.cfg file"
+  template:
+    src: "~/DevOps/Github_Projects/Master_DB_servers/loadb_roles/templates/haproxy.cfg.j2"
+    dest: "/etc/haproxy/haproxy.cfg"
+    
+- name: " haproxy service start"
+  service:
+    name: haproxy
+    state: restarted
+
