@@ -11,9 +11,6 @@ Vagrant.configure("2") do |config|
   config.vm.define "web" do |web|
     web.vm.hostname = "web"
     web.vm.network "private_network", ip: "192.168.50.5";
-    web.vm.provision "ansible" do |ansible|
-      ansible.playbook = "master_playbook.yml"
-    end
   end  
 
   config.vm.define "web2" do |web2|
@@ -34,6 +31,9 @@ Vagrant.configure("2") do |config|
   config.vm.define "loadb" do |loadb|
     loadb.vm.hostname = "loadb"
     loadb.vm.network "private_network", ip: "192.168.50.10";
+    # loadb.vm.provision "ansible" do |ansible|
+    #   ansible.playbook = "master_playbook.yml"
+    # end
   end
 
 end
